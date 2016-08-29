@@ -24,6 +24,9 @@ runtime! debian.vim
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Remap <ESC> to jj
+imap jj <Esc> 
+
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#begin()
@@ -45,6 +48,9 @@ filetype off                  " required
  Plugin 'jiangmiao/auto-pairs'
  Plugin 'tpope/vim-bundler'
  Plugin 'scrooloose/nerdtree'
+ Plugin 'tpope/vim-surround'
+ Plugin 'kchmck/vim-coffee-script'
+ Plugin 'gregsexton/MatchTag'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
@@ -108,7 +114,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-set background=dark
+"set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
