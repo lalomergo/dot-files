@@ -27,6 +27,9 @@ filetype off                  " required
 " Remap <ESC> to jj
 imap jj <Esc> 
 
+"Handle Hidden Buffers
+set hidden
+
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#begin()

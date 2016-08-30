@@ -30,6 +30,9 @@ imap jj <Esc>
 "256 color support
 set t_Co=256
 
+"Handle hidden buffers
+set hidden
+
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#begin()
