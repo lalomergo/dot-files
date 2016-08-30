@@ -130,6 +130,7 @@ endif
 " according to the detected filetype.
 if has("autocmd")
   filetype plugin indent on
+  autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " The following are commented out as they cause vim to behave a lot
