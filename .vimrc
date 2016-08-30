@@ -51,6 +51,7 @@ imap jj <Esc>
  Plugin 'tpope/vim-surround'
  Plugin 'kchmck/vim-coffee-script'
  Plugin 'gregsexton/MatchTag'
+ Plugin 'ctrlpvim/ctrlp.vim'
 " " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " " Git plugin not hosted on GitHub
