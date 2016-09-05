@@ -102,9 +102,12 @@ nnoremap <leader>i :set cursorline!<cr>
 
 " Airline Configuration
 let g:airline_theme='molokai'
-
+"Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+"Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 "NerdTree initialization
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
 
 
 
