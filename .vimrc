@@ -13,6 +13,16 @@ runtime! debian.vim
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
+"SWAP FILES (.swp) in a common location
+set dir =~/.vim/_swap//
+
+"backup files (~) in a common location if possible
+set backup
+set backupdir=~/.vim/_backup/,~/tmp,.
+
+"turn on undo files, put them in a common location
+set undofile
+set undodir=~/.vim/_undo/
 
 "Tab stuff
 :set expandtab
