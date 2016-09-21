@@ -13,6 +13,7 @@ runtime! debian.vim
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
 "set compatible
+
 "SWAP FILES (.swp) in a common location
 set dir =~/.vim/_swap//
 
@@ -25,17 +26,26 @@ set undofile
 set undodir=~/.vim/_undo/
 
 "Tab stuff
-:set expandtab
-:set tabstop=2
-:set shiftwidth=4
+set expandtab
+set tabstop=2
+set shiftwidth=4
+
+"TTYFast
+set ttyfast
+
+"Highlight currentline
+set cursorline
 
 "+++++++++++++++++++++++++++++++
-"Configuración de Vundle
+"Vundle Config
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " Remap <ESC> to jj
 imap jj <Esc> 
+
+"256 color support
+"set t_Co=256
 
 "Handle Hidden Buffers
 set hidden
@@ -65,19 +75,7 @@ set hidden
  Plugin 'kchmck/vim-coffee-script'
  Plugin 'gregsexton/MatchTag'
  Plugin 'ctrlpvim/ctrlp.vim'
-" " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" " The sparkup vim script is in a subdirectory of this repo called vim.
-" " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" " Install L9 and avoid a Naming conflict if you've already installed a
-" " different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-"
+ 
 " " All of your Plugins must be added before the following line
  call vundle#end()            " required
  filetype plugin indent on    " required
@@ -96,19 +94,20 @@ set hidden
 " " Put your non-Plugin stuff after this line
 "++++++++++++++++++++++++++++++++
 
-"Tema MOLOKAI 
+"MOLOKAI Theme
 colorscheme molokai
 
-"Que aparezca airline siempre
+"Set airline bar to always show
 set laststatus=2
-"Que aparezcan el número de líneas
-"set number
+
+"Show line numbers
+set number
 set relativenumber
-"Activar wrap
+
+"Set wrap
 set wrap
 " toggle cursor line
 nnoremap <leader>i :set cursorline!<cr>
-
 
 " Airline Configuration
 let g:airline_theme='molokai'
@@ -116,12 +115,12 @@ let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
 "Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
 "NerdTree initialization
 "autocmd vimenter * NERDTree
 
-
-
-
+"Molokai 256 color support
+"let g:rehash256 = 1
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
