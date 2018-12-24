@@ -3,11 +3,14 @@
 
 # #---Basic Definitions---# #
 set $mod Mod4
-set $term --no-startup-id i3-sensible-terminal
+#set $term --no-startup-id i3-sensible-terminal
+set $term --no-startup-id st
 set $shutdown sudo -A shutdown -h now
 set $reboot sudo -A reboot
 set $hibernate sudo -A systemctl suspend
 font pango:Lato Regular 8
+#font noto:Sans Mono 10
+
 # Setting spanish keyboard layout
 exec setxkbmap -layout latam
 
@@ -22,10 +25,15 @@ for_window [title="dropdownterm"] sticky enable
 # #---Starting External Scripts---# #
 # Setting the wallpaper
 exec --no-startup-id feh --bg-scale ~/Pictures/WALLPAPERS/wall1.jpg
+
 # Composite manager:
 exec_always --no-startup-id compton -f
+#exec_always --no-startup-id xcompmgr
+
 # Starting unclutter
 exec --no-startup-id unclutter
+#exec --no-startup-id unclutter -grab
+
 # Removing windows border
 hide_edge_borders both
 
@@ -50,6 +58,7 @@ bar {
         position top
         status_command i3status
         font pango:Lato Regular 8
+        #font noto:Sans Mono 10
         colors {
             background  $bg-color
             statusline  $text-color
@@ -73,10 +82,14 @@ bindsym $mod+Return exec $term
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+# back to previous workspace
 bindsym $mod+Escape workspace prev
+
+# exit i3
 bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #bindsym $mod+BackSpace
@@ -97,9 +110,11 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 #bindsym $mod+Shift+e
 
-bindsym $mod+r mode "resize"
+bindsym $mod+r exec $term -e ranger
+#bindsym $mod+r exec $term -e nnn
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r mode "resize"
 
 bindsym $mod+t split toggle
 #bindsym $mod+Shift+t
@@ -129,6 +144,7 @@ bindsym $mod+s layout stacking
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show run
+#bindsym $mod+d exec --no-startup-id dmenu_run
 #bindsym $mod+Shift+d
 
 # enter fullscreen mode for the focused container
@@ -210,6 +226,14 @@ set $workspace5 "5: "
 set $workspace9 "9: "
 set $workspace0 "10: "
 
+#set $workspace1 "1: <>"
+#set $workspace2 "2: vim"
+#set $workspace3 "3: term"
+#set $workspace4 "4: ?"
+#set $workspace5 "5: "
+#set $workspace9 "9: news"
+#set $workspace0 "10: music"
+
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
@@ -236,12 +260,11 @@ bindsym $mod+Shift+0 move container to workspace $workspace0
 
 # Setting default applications
 for_window [class="Firefox"] $workspace1
+#for_window [class="Midori"] $workspace1
 for_window [class="Gimp"] $workspace5
 for_window [class="GIMP Startup"] $workspace5
 for_window [class="Franz"] move to workspace $workspace9
-#assign [class="Franz"] $workspace9
 for_window [class="Spotify"] move to workspace $workspace0
-#assign [class="Spotify"] $workspace0
 for_window [class="Rhythmbox"] move to workspace $workspace0
 
 mode "resize" {
@@ -279,11 +302,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay  exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl previous
 
-
-
+# Start NetworkManager applet
 exec_always --no-startup-id nm-applet
