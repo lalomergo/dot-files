@@ -12,12 +12,22 @@ font pango:Lato Regular 8
 exec setxkbmap -layout latam
 
 # #---Dropdown Terminal---# #
-exec --no-startup-id $term -name dropdownterm
-for_window [title="dropdownterm"] floating enable
-for_window [title="dropdownterm"] resize set 625 450
-for_window [title="dropdownterm"] border pixel 3
-for_window [title="dropdownterm"] move scratchpad 
-for_window [title="dropdownterm"] sticky enable
+exec --no-startup-id $term -n dropdownterm 
+
+for_window [instance="dropdownterm"] floating enabled
+for_window [instance="dropdownterm"] resize set 625 450
+for_window [instance="dropdownterm"] border pixel 3
+for_window [instance="dropdownterm"] move scratchpad 
+for_window [instance="dropdownterm"] sticky enable
+
+# #---Dropdown Terminal IRB---# #
+exec --no-startup-id $term -n dropdownirb -e irb
+
+for_window [instance="dropdownirb"] floating enabled
+for_window [instance="dropdownirb"] resize set 400 400
+for_window [instance="dropdownirb"] border pixel 3
+for_window [instance="dropdownirb"] move scratchpad 
+for_window [instance="dropdownirb"] sticky enable
 
 # #---Starting External Scripts---# #
 # Setting the wallpaper
@@ -124,8 +134,8 @@ bindsym $mod+t split toggle
 #bindsym $mod+y 
 #bindsym $mod+Shift+y
 
-bindsym $mod+u [title="dropdownterm"] scratchpad show, move position center
-#bindsym $mod+Shift+u
+bindsym $mod+u [instance="dropdownterm"] scratchpad show; [instance="dropdownterm"] move position center
+bindsym $mod+Shift+u [instance="dropdownirb"] scratchpad show; [instance="dropdownirb"] move position center
 
 bindsym $mod+i exec $term -e htop
 #bindsym $mod+Shift+i
