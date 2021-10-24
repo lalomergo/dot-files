@@ -1,44 +1,45 @@
 # #---Basic Definitions---# #
 set $mod Mod4
 #set $term --no-startup-id i3-sensible-terminal
-set $term --no-startup-id st
-set $shutdown sudo -A shutdown -h now
-set $reboot sudo -A reboot
+set $term --no-startup-id terminator
+#set $term --no-startup-id st
+set $shutdown sudo shutdown -h now
+set $reboot sudo reboot
 set $hibernate sudo -A systemctl suspend
-font pango:Lato Regular 8
-#font noto:Sans Mono 10
+# font pango:Lato Regular 11
+font noto:Sans Mono 11
 
 # Setting spanish keyboard layout
 exec setxkbmap -layout latam
 
 # #---Dropdown Terminal---# #
-exec --no-startup-id $term -n dropdownterm 
+# exec --no-startup-id $term -n dropdownterm 
 
-for_window [instance="dropdownterm"] floating enabled
-for_window [instance="dropdownterm"] resize set 625 450
-for_window [instance="dropdownterm"] border pixel 3
-for_window [instance="dropdownterm"] move scratchpad 
-for_window [instance="dropdownterm"] sticky enable
+# for_window [instance="dropdownterm"] floating enabled
+# for_window [instance="dropdownterm"] resize set 625 450
+# for_window [instance="dropdownterm"] border pixel 3
+# for_window [instance="dropdownterm"] move scratchpad 
+# for_window [instance="dropdownterm"] sticky enable
 
 # #---Dropdown Terminal IRB---# #
-exec --no-startup-id $term -n dropdownirb -e irb
+# exec --no-startup-id $term -n dropdownirb -e irb
 
-for_window [instance="dropdownirb"] floating enabled
-for_window [instance="dropdownirb"] resize set 400 400
-for_window [instance="dropdownirb"] border pixel 3
-for_window [instance="dropdownirb"] move scratchpad 
-for_window [instance="dropdownirb"] sticky enable
+# for_window [instance="dropdownirb"] floating enabled
+# for_window [instance="dropdownirb"] resize set 400 400
+# for_window [instance="dropdownirb"] border pixel 3
+# for_window [instance="dropdownirb"] move scratchpad 
+# for_window [instance="dropdownirb"] sticky enable
 
 # #---Starting External Scripts---# #
 # Setting the wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/WALLPAPERS/wall1.jpg
+exec --no-startup-id feh --bg-scale ~/Documents/Pictures/Wallpapers/wallhaven-lm73mr.jpg
 
 # Composite manager:
-exec_always --no-startup-id compton -fcC
+#exec_always --no-startup-id compton -fcC
 #exec_always --no-startup-id xcompmgr
 
 # Starting unclutter
-exec --no-startup-id unclutter
+#exec --no-startup-id unclutter
 #exec --no-startup-id unclutter -grab
 
 # Removing window title bar
@@ -69,8 +70,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color     
 bar {
         position top
         status_command i3status
-        font pango:Lato Regular 8
-        #font noto:Sans Mono 10
+        #font pango:Lato Regular 10
+        font noto:Sans Mono 10
         colors {
             background  $bg-color
             statusline  $text-color
@@ -83,6 +84,40 @@ bar {
              #           binding_mode        #2f343a #900000 #ffffff
     } 
 }
+
+#set $workspace1 "1: "
+#set $workspace2 "2: "
+#set $workspace3 "3: "
+#set $workspace4 "4: ?"
+#set $workspace5 "5: "
+#set $workspace6 "6: HDMI"
+#set $workspace9 "9: "
+#set $workspace0 "10: "
+
+#set $workspace1 "1: main"
+set $workspace1 "1: main"
+set $workspace2 "2: vim"
+set $workspace3 "3: term"
+set $workspace4 "4: other"
+set $workspace5 "5: ?"
+set $workspace6 "6: hdmi"
+set $workspace9 "9: news"
+set $workspace0 "10: music"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace0
+
+# Move workspace6 to an external monitor
+workspace $workspace6 output HDMI1
 
 # #---Basic Bindings---# #
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -105,7 +140,8 @@ bindsym $mod+Escape workspace prev
 bindsym $mod+Shift+Escape exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #bindsym $mod+BackSpace
-bindsym $mod+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
+#bindsym $mod+Shift+BackSpace exec --no-startup-id prompt "Reboot computer?" "$reboot"
+bindsym $mod+Shift+BackSpace exec "i3-nagbar -t warning -m 'Reboot computer?' -b 'Yes' '$reboot'"
 
 #bindsym $mod+Shift+Delete
 #bindsym $mod+Insert
@@ -134,8 +170,8 @@ bindsym $mod+t split toggle
 #bindsym $mod+y 
 #bindsym $mod+Shift+y
 
-bindsym $mod+u [instance="dropdownterm"] scratchpad show; [instance="dropdownterm"] move position center
-bindsym $mod+Shift+u [instance="dropdownirb"] scratchpad show; [instance="dropdownirb"] move position center
+# bindsym $mod+u [instance="dropdownterm"] scratchpad show; [instance="dropdownterm"] move position center
+# bindsym $mod+Shift+u [instance="dropdownirb"] scratchpad show; [instance="dropdownirb"] move position center
 
 bindsym $mod+i exec $term -e htop
 #bindsym $mod+Shift+i
@@ -155,8 +191,8 @@ bindsym $mod+s layout stacking
 #bindsym $mod+Shift+s
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id rofi -show run
-#bindsym $mod+d exec --no-startup-id dmenu_run
+#bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id dmenu_run
 #bindsym $mod+Shift+d
 
 # enter fullscreen mode for the focused container
@@ -164,7 +200,7 @@ bindsym $mod+f fullscreen toggle
 #bindsym $mod+Shift+f
 
 bindsym $mod+g workspace prev
-bindsym $mod+Shift+g exec --no-startup-id gimp; workspace $workspace5
+#bindsym $mod+Shift+g exec --no-startup-id gimp; workspace $workspace5
 
 # change focus
 bindsym $mod+h focus left
@@ -202,7 +238,8 @@ bindsym $mod+v split v
 #bindsym $mod+Shift+b
 
 #bindsym $mod+n
-#bindsym #mod+n exec $term -e newsboat
+bindsym $mod+n workspace $workspace9; exec $term -e newsboat
+
 #bindsym $mod+Shift+n
 
 #bindsym $mod+m
@@ -232,37 +269,6 @@ bindsym $mod+Shift+Right move right
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: ?"
-set $workspace5 "5: "
-set $workspace6 "6: HDMI"
-set $workspace9 "9: "
-set $workspace0 "10: "
-
-#set $workspace1 "1: <>"
-#set $workspace2 "2: vim"
-#set $workspace3 "3: term"
-#set $workspace4 "4: ?"
-#set $workspace5 "5: "
-#set $workspace9 "9: news"
-#set $workspace0 "10: music"
-
-# switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
-bindsym $mod+5 workspace $workspace5
-bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace0
-
-# Move workspace6 to an external monitor
-# workspace $workspace6 output HDMI-A-0
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -277,13 +283,14 @@ bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace0
 
 # Setting default applications
-for_window [class="Firefox"] $workspace1
+for_window [class="LibreWolf"] $workspace1
 #for_window [class="Midori"] $workspace1
-for_window [class="Gimp"] $workspace5
-for_window [class="GIMP Startup"] $workspace5
-for_window [class="Franz"] move to workspace $workspace9
-for_window [class="Spotify"] move to workspace $workspace0
-for_window [class="Rhythmbox"] move to workspace $workspace0
+#for_window [class="Gimp"] $workspace5
+#for_window [class="GIMP Startup"] $workspace5
+# for_window [class="newsboat"] move to workspace $workspace9
+#for_window [class="Franz"] move to workspace $workspace9
+#for_window [class="Spotify"] move to workspace $workspace0
+#for_window [class="Rhythmbox"] move to workspace $workspace0
 
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
