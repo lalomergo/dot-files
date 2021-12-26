@@ -157,6 +157,7 @@
     Plugin 'ryanoasis/vim-devicons'
     Plugin 'vimwiki/vimwiki'
     Plugin 'tomlion/vim-solidity'
+    Plugin 'ctrlpvim/ctrlp.vim'
 
 " " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -232,6 +233,13 @@
   let wiki_1 = {}
   let wiki_1.path = '~/Documents/Wiki/Filos/' 
   "let wiki_1
+
+" CTRP Config
+  "Mapping
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlP'
+
+  "
 
 
 " SNIPPETS
